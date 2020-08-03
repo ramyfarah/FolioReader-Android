@@ -112,6 +112,12 @@ public class FolioReader {
                 new IntentFilter(ACTION_FOLIOREADER_CLOSED));
     }
 
+    public FolioReader openBookWithCustomActivity(String assetOrSdcardPath, Class<?> folioActivity) {
+        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0, folioActivity);
+        context.startActivity(intent);
+        return singleton;
+    }
+
     public FolioReader openBook(String assetOrSdcardPath) {
         Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
         context.startActivity(intent);
@@ -162,8 +168,12 @@ public class FolioReader {
     }
 
     private Intent getIntentFromUrl(String assetOrSdcardPath, int rawId) {
+        return getIntentFromUrl(assetOrSdcardPath, rawId, FolioActivity.class);
+    }
 
-        Intent intent = new Intent(context, FolioActivity.class);
+    private Intent getIntentFromUrl(String assetOrSdcardPath, int rawId, Class<?> folioActivity) {
+
+        Intent intent = new Intent(context, folioActivity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Config.INTENT_CONFIG, config);
         intent.putExtra(Config.EXTRA_OVERRIDE_CONFIG, overrideConfig);
