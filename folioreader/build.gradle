@@ -103,6 +103,10 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-annotations:$JACKSON_VERSION"
     implementation "com.fasterxml.jackson.core:jackson-databind:$JACKSON_VERSION"
 
+    // dimensions
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
     // R2 modules
     implementation "com.github.codetoart:r2-shared-kotlin:$R2_SHARED_KOTLIN_VERSION"
     implementation("com.github.codetoart:r2-streamer-kotlin:$R2_STREAMER_KOTLIN_VERSION") {

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFFFF"
+    android:elevation="@dimen/_3sdp"
+    android:paddingTop="@dimen/_2sdp"
+    android:paddingBottom="@dimen/_2sdp">
+
+    <ImageView
+        android:id="@+id/activity_track_player_track_image"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:src="@drawable/folio_audio_place_holder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintTop_toBottomOf="@id/audio_bottom_bar_close_btn" />
+
+    <TextView
+        android:id="@+id/txtCurrentMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="@dimen/font_large"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/audio_bottom_bar_close_btn"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Audio name"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/activity_track_player_track_image"
+        app:layout_constraintTop_toTopOf="@id/activity_track_player_track_image"
+        app:layout_constraintEnd_toStartOf="@id/btnNext"
+        app:layout_constraintStart_toEndOf="@id/btnPrev"
+        app:srcCompat="@drawable/folio_ic_play" />
+
+    <ImageButton
+        android:id="@+id/audio_bottom_bar_close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:srcCompat="@drawable/folio_ic_baseline_close_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/activity_track_player_track_image"
+        app:layout_constraintTop_toTopOf="@id/activity_track_player_track_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/folio_ic_seek_forward" />
+
+    <ImageButton
+        android:id="@+id/btnPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/activity_track_player_track_image"
+        app:layout_constraintTop_toTopOf="@id/activity_track_player_track_image"
+        app:layout_constraintStart_toEndOf="@id/activity_track_player_track_image"
+        app:srcCompat="@drawable/folio_ic_seek_previous" />
+</android.support.constraint.ConstraintLayout>
