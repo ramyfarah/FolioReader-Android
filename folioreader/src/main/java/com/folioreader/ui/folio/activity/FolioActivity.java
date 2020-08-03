@@ -224,7 +224,14 @@ public class FolioActivity
         if (action != null && action.equals(FolioReader.ACTION_CLOSE_FOLIOREADER)) {
             // FolioActivity is topActivity, so need to broadcast ReadPosition.
             finish();
+            return;
         }
+
+        onFolioActivityResumed();
+    }
+
+    protected void onFolioActivityResumed() {
+
     }
 
     @Override
@@ -256,7 +263,7 @@ public class FolioActivity
         setConfig(savedInstanceState);
         initDistractionFreeMode(savedInstanceState);
 
-        setContentView(R.layout.folio_activity);
+        setContentView(getLayoutRes());
         this.savedInstanceState = savedInstanceState;
 
         if (savedInstanceState != null) {
@@ -282,6 +289,10 @@ public class FolioActivity
         } else {
             setupBook();
         }
+    }
+
+    protected int getLayoutRes() {
+        return R.layout.folio_activity;
     }
 
     private void initActionBar() {
