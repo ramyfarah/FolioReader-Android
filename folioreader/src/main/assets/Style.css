@@ -171,6 +171,7 @@ html .highlight-yellow, html .highlight-green, html .highlight-blue, html .highl
     border-radius: 3px;
     padding: 0 2px;
     margin: 0 -2px;
+    font-size: 1em;
 }
 
 /* default media overlay style */
@@ -259,7 +260,7 @@ html.nightMode .highlight-underline {border-bottom: 2px solid rgba(240, 40, 20, 
      font-family: "raleway", sans-serif !important;
  }
 
-html.textSizeOne { font-size: 13px !important; }
+html.textSizeOne { font-size: 8px !important; }
 html.textSizeTwo { font-size: 15px !important; }
 html.textSizeThree { font-size: 17px !important; }
 html.textSizeFour { font-size: 19px !important; }
