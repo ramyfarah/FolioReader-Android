@@ -171,6 +171,7 @@ html .highlight-yellow, html .highlight-green, html .highlight-blue, html .highl
     border-radius: 3px;
     padding: 0 2px;
     margin: 0 -2px;
+    font-size: 1em;
 }
 
 /* default media overlay style */
