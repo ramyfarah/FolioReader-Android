@@ -306,9 +306,8 @@ class FolioWebView : WebView {
                 uiHandler.post { showDictDialog(selectedText) }
             }
             R.id.addNote -> {
-                UiUtil.share(context, selectedText)
-//                onHighlightColorItemsClicked(HighlightStyle.Blue, false)
-//                editNote()
+                editNote()
+                onHighlightColorItemsClicked(HighlightStyle.Blue, false)
             }
             else -> {
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
