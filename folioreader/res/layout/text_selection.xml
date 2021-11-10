@@ -12,7 +12,7 @@
         app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="288dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="?popUpWindowBackground">
 
@@ -46,6 +46,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/define" />
 
+                <TextView
+                    android:id="@+id/addNote"
+                    style="@style/TextViewTextSelector"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_note" />
             </LinearLayout>
 
             <View
@@ -99,6 +106,7 @@
                         style="@style/ImageViewTextSelectorMarker"
                         app:srcCompat="@drawable/ic_format_underlined" />
 
+                    
                 </LinearLayout>
 
             </HorizontalScrollView>

@@ -30,7 +30,8 @@ public class HighlightUtil {
                                               String bookId,
                                               String pageId,
                                               int pageNo,
-                                              String oldRangy) {
+                                              String oldRangy,
+                                              String note) {
         try {
             JSONObject jObject = new JSONObject(content);
 
@@ -48,6 +49,7 @@ public class HighlightUtil {
             highlightImpl.setPageId(pageId);
             highlightImpl.setRangy(rangyHighlightElement);
             highlightImpl.setDate(Calendar.getInstance().getTime());
+            highlightImpl.setNote(note);
             // save highlight to database
             long id = HighLightTable.insertHighlight(highlightImpl);
             if (id != -1) {
