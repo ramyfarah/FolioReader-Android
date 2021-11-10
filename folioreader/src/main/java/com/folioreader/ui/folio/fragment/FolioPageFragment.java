@@ -843,7 +843,7 @@ public class FolioPageFragment
 
     public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated) {
         if (!isAlreadyCreated) {
-            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s');}", HighlightImpl.HighlightStyle.classForStyle(style)));
+            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s', '%s');}", HighlightImpl.HighlightStyle.classForStyle(style), "Note"));
         } else {
             mWebview.loadUrl(String.format("javascript:setHighlightStyle('%s')", HighlightImpl.HighlightStyle.classForStyle(style)));
         }
@@ -858,14 +858,15 @@ public class FolioPageFragment
 
     @SuppressWarnings("unused")
     @JavascriptInterface
-    public void onReceiveHighlights(String html) {
+    public void onReceiveHighlights(String html, String note) {
         if (html != null) {
             rangy = HighlightUtil.createHighlightRangy(getActivity().getApplicationContext(),
                     html,
                     mBookId,
                     getPageName(),
                     mPosition,
-                    rangy);
+                    rangy,
+                    note);
         }
     }
 

@@ -479,7 +479,7 @@ $(function(){
         var range = window.getSelection().toString();
         var params = {content: range,rangy: this.getHighlights(),color: color};
         this.clearSelection();
-        Highlight.onReceiveHighlights(JSON.stringify(params));
+        Highlight.onReceiveHighlights(JSON.stringify(params), "Test Note");
       } catch(err){
         console.log("highlightSelection : " + err);
       }
@@ -488,7 +488,7 @@ $(function(){
     unHighlightSelection: function(){
       try {
         this.highlighter.unhighlightSelection();
-        Highlight.onReceiveHighlights(this.getHighlights());
+        Highlight.onReceiveHighlights(this.getHighlights(), "");
       } catch(err){}
     },
 
