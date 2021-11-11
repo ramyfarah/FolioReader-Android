@@ -307,7 +307,6 @@ class FolioWebView : WebView {
             }
             R.id.addNote -> {
                 editNote()
-                onHighlightColorItemsClicked(HighlightStyle.Blue, false)
             }
             else -> {
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
@@ -323,6 +322,7 @@ class FolioWebView : WebView {
         dialog.findViewById<View>(R.id.btn_save_note).setOnClickListener {
             val note = (dialog.findViewById<View>(R.id.edit_note) as EditText).text.toString()
             if (!TextUtils.isEmpty(note)) {
+                onHighlightColorItemsClicked(HighlightStyle.Blue, false)
                 dialog.dismiss()
             } else {
                 Toast.makeText(context,
