@@ -287,20 +287,20 @@ class FolioWebView : WebView {
 
     @JavascriptInterface
     fun onTextSelectionItemClicked(id: Int, selectedText: String?) {
-
-        uiHandler.post { loadUrl("javascript:clearSelection()") }
-
         when (id) {
             R.id.copySelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> copySelection -> $selectedText")
                 UiUtil.copyToClipboard(context, selectedText)
                 Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT).show()
             }
             R.id.shareSelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> shareSelection -> $selectedText")
                 UiUtil.share(context, selectedText)
             }
             R.id.defineSelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> defineSelection -> $selectedText")
                 uiHandler.post { showDictDialog(selectedText) }
             }
@@ -308,6 +308,7 @@ class FolioWebView : WebView {
                 editNote()
             }
             else -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
             }
         }
