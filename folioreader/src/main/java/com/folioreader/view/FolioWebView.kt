@@ -29,7 +29,6 @@ import com.folioreader.Config
 import com.folioreader.Constants
 import com.folioreader.R
 import com.folioreader.model.HighLight
-import com.folioreader.model.HighlightImpl
 import com.folioreader.model.HighlightImpl.HighlightStyle
 import com.folioreader.model.sqlite.HighLightTable
 import com.folioreader.ui.folio.activity.FolioActivity
@@ -322,7 +321,7 @@ class FolioWebView : WebView {
         dialog.findViewById<View>(R.id.btn_save_note).setOnClickListener {
             val note = (dialog.findViewById<View>(R.id.edit_note) as EditText).text.toString()
             if (!TextUtils.isEmpty(note)) {
-                onHighlightColorItemsClicked(HighlightStyle.Blue, false)
+                uiHandler.post {onHighlightColorItemsClicked(HighlightStyle.Blue, false)}
                 dialog.dismiss()
             } else {
                 Toast.makeText(context,
