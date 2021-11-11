@@ -841,7 +841,7 @@ public class FolioPageFragment
         outState.putParcelable(BUNDLE_SEARCH_ITEM, searchItemVisible);
     }
 
-    public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated) {
+    public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated, String note) {
         if (!isAlreadyCreated) {
             mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s', '%s');}", HighlightImpl.HighlightStyle.classForStyle(style), "Note"));
         } else {
