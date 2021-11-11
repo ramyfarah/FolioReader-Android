@@ -322,7 +322,7 @@ class FolioWebView : WebView {
         dialog.findViewById<View>(R.id.btn_save_note).setOnClickListener {
             val note = (dialog.findViewById<View>(R.id.edit_note) as EditText).text.toString()
             if (!TextUtils.isEmpty(note)) {
-                uiHandler.post {onHighlightColorItemsClicked(HighlightStyle.Blue, false)}
+                uiHandler.post {onHighlightColorItemsClicked(HighlightStyle.Blue, false, note)}
                 dialog.dismiss()
             } else {
                 Toast.makeText(context,
@@ -340,8 +340,8 @@ class FolioWebView : WebView {
         dictionaryFragment.show(parentFragment.fragmentManager, DictionaryFragment::class.java.name)
     }
 
-    private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean) {
-        parentFragment.highlight(style, isAlreadyCreated)
+    private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean, note: String? = "") {
+        parentFragment.highlight(style, isAlreadyCreated, note)
         dismissPopupWindow()
     }
 
