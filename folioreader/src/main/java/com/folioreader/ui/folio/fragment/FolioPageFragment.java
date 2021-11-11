@@ -843,7 +843,7 @@ public class FolioPageFragment
 
     public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated, String note) {
         if (!isAlreadyCreated) {
-            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s', '%s');}", HighlightImpl.HighlightStyle.classForStyle(style), "Note"));
+            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s', '%s');}", HighlightImpl.HighlightStyle.classForStyle(style), note));
         } else {
             mWebview.loadUrl(String.format("javascript:setHighlightStyle('%s')", HighlightImpl.HighlightStyle.classForStyle(style)));
         }
