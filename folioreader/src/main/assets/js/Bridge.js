@@ -472,14 +472,14 @@ $(function(){
       $("#"+inputId).trigger("input", ["true"]);
     },
 
-    highlightSelection: function(color){
+    highlightSelection: function(color, note){
       try {
 
         this.highlighter.highlightSelection(color, null);
         var range = window.getSelection().toString();
         var params = {content: range,rangy: this.getHighlights(),color: color};
         this.clearSelection();
-        Highlight.onReceiveHighlights(JSON.stringify(params));
+        Highlight.onReceiveHighlights(JSON.stringify(params), note);
       } catch(err){
         console.log("highlightSelection : " + err);
       }
@@ -488,7 +488,7 @@ $(function(){
     unHighlightSelection: function(){
       try {
         this.highlighter.unhighlightSelection();
-        Highlight.onReceiveHighlights(this.getHighlights());
+        Highlight.onReceiveHighlights(this.getHighlights(), "");
       } catch(err){}
     },
 

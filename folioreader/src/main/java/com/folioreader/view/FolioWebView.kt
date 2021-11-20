@@ -1,5 +1,6 @@
 package com.folioreader.view
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
@@ -11,6 +12,7 @@ import android.os.Looper
 import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GestureDetectorCompat
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.Log
@@ -20,6 +22,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import android.widget.EditText
 import android.widget.PopupWindow
 import android.widget.Toast
 import com.folioreader.Config
@@ -276,29 +279,55 @@ class FolioWebView : WebView {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+        viewTextSelection.addNote.setOnClickListener {
+            dismissPopupWindow()
+            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+        }
     }
 
     @JavascriptInterface
     fun onTextSelectionItemClicked(id: Int, selectedText: String?) {
-
-        uiHandler.post { loadUrl("javascript:clearSelection()") }
-
         when (id) {
             R.id.copySelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> copySelection -> $selectedText")
                 UiUtil.copyToClipboard(context, selectedText)
                 Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT).show()
             }
             R.id.shareSelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> shareSelection -> $selectedText")
                 UiUtil.share(context, selectedText)
             }
             R.id.defineSelection -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> defineSelection -> $selectedText")
                 uiHandler.post { showDictDialog(selectedText) }
             }
+            R.id.addNote -> {
+                editNote()
+            }
             else -> {
+                uiHandler.post { loadUrl("javascript:clearSelection()") }
                 Log.w(LOG_TAG, "-> onTextSelectionItemClicked -> unknown id = $id")
+            }
+        }
+    }
+
+    fun editNote() {
+        val dialog = Dialog(context, R.style.DialogCustomTheme)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_edit_notes)
+        dialog.show()
+        dialog.findViewById<View>(R.id.btn_save_note).setOnClickListener {
+            val note = (dialog.findViewById<View>(R.id.edit_note) as EditText).text.toString()
+            if (!TextUtils.isEmpty(note)) {
+                uiHandler.post {onHighlightColorItemsClicked(HighlightStyle.Blue, false, note)}
+                dialog.dismiss()
+            } else {
+                Toast.makeText(context,
+                        context.getString(R.string.please_enter_note),
+                        Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -311,8 +340,8 @@ class FolioWebView : WebView {
         dictionaryFragment.show(parentFragment.fragmentManager, DictionaryFragment::class.java.name)
     }
 
-    private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean) {
-        parentFragment.highlight(style, isAlreadyCreated)
+    private fun onHighlightColorItemsClicked(style: HighlightStyle, isAlreadyCreated: Boolean, note: String? = "") {
+        parentFragment.highlight(style, isAlreadyCreated, note)
         dismissPopupWindow()
     }
 

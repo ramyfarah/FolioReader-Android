@@ -841,9 +841,9 @@ public class FolioPageFragment
         outState.putParcelable(BUNDLE_SEARCH_ITEM, searchItemVisible);
     }
 
-    public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated) {
+    public void highlight(HighlightImpl.HighlightStyle style, boolean isAlreadyCreated, String note) {
         if (!isAlreadyCreated) {
-            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s');}", HighlightImpl.HighlightStyle.classForStyle(style)));
+            mWebview.loadUrl(String.format("javascript:if(typeof ssReader !== \"undefined\"){ssReader.highlightSelection('%s', '%s');}", HighlightImpl.HighlightStyle.classForStyle(style), note));
         } else {
             mWebview.loadUrl(String.format("javascript:setHighlightStyle('%s')", HighlightImpl.HighlightStyle.classForStyle(style)));
         }
@@ -858,14 +858,15 @@ public class FolioPageFragment
 
     @SuppressWarnings("unused")
     @JavascriptInterface
-    public void onReceiveHighlights(String html) {
+    public void onReceiveHighlights(String html, String note) {
         if (html != null) {
             rangy = HighlightUtil.createHighlightRangy(getActivity().getApplicationContext(),
                     html,
                     mBookId,
                     getPageName(),
                     mPosition,
-                    rangy);
+                    rangy,
+                    note);
         }
     }
 
