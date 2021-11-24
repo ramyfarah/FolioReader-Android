@@ -1036,7 +1036,7 @@ public class FolioActivity
         }
     }
 
-    private FolioPageFragment getCurrentFragment() {
+    public FolioPageFragment getCurrentFragment() {
 
         if (mFolioPageFragmentAdapter != null && mFolioPageViewPager != null) {
             return (FolioPageFragment) mFolioPageFragmentAdapter
