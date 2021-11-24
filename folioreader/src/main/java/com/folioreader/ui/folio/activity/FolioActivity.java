@@ -248,6 +248,9 @@ public class FolioActivity
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+        FolioPageFragment folioPageFragment = getCurrentFragment();
+        folioPageFragment.scrollToHighlightId(getIntent().getStringExtra("rangy"));
+
         handler = new Handler();
         Display display = getWindowManager().getDefaultDisplay();
         displayMetrics = getResources().getDisplayMetrics();
