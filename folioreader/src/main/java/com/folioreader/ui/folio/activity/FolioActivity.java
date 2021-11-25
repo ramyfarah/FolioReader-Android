@@ -220,6 +220,10 @@ public class FolioActivity
         Log.v(LOG_TAG, "-> onResume");
         topActivity = true;
 
+        FolioPageFragment folioPageFragment = getCurrentFragment();
+        if (getIntent().getStringExtra("rangy") != null && folioPageFragment != null) {
+            folioPageFragment.scrollToHighlightId(getIntent().getStringExtra("rangy"));
+        }
         String action = getIntent().getAction();
         if (action != null && action.equals(FolioReader.ACTION_CLOSE_FOLIOREADER)) {
             // FolioActivity is topActivity, so need to broadcast ReadPosition.
@@ -247,11 +251,6 @@ public class FolioActivity
 
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
-        FolioPageFragment folioPageFragment = getCurrentFragment();
-        if (getIntent().getStringExtra("rangy") != null && folioPageFragment != null) {
-            folioPageFragment.scrollToHighlightId(getIntent().getStringExtra("rangy"));
-        }
 
         handler = new Handler();
         Display display = getWindowManager().getDefaultDisplay();
