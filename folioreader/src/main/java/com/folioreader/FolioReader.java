@@ -113,9 +113,10 @@ public class FolioReader {
                 new IntentFilter(ACTION_FOLIOREADER_CLOSED));
     }
 
-    public FolioReader openBookWithCustomActivity(String assetOrSdcardPath, Class<?> folioActivity, String rangy) {
+    public FolioReader openBookWithCustomActivity(String assetOrSdcardPath, Class<?> folioActivity, String rangy, int pageNumber) {
         Intent intent = getIntentFromUrl(assetOrSdcardPath, 0, folioActivity);
         intent.putExtra("rangy", rangy);
+        intent.putExtra("page_number", pageNumber);
         context.startActivity(intent);
         return singleton;
     }

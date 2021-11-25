@@ -222,6 +222,7 @@ public class FolioActivity
 
         FolioPageFragment folioPageFragment = getCurrentFragment();
         if (getIntent().getStringExtra("rangy") != null && folioPageFragment != null) {
+            mFolioPageViewPager.setCurrentItem(getIntent().getIntExtra("page_number", 0));
             folioPageFragment.scrollToHighlightId(getIntent().getStringExtra("rangy"));
         }
         String action = getIntent().getAction();
