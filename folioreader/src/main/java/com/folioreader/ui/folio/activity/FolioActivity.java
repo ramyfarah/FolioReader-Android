@@ -249,7 +249,7 @@ public class FolioActivity
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         FolioPageFragment folioPageFragment = getCurrentFragment();
-        if (getIntent().getStringExtra("rangy") != null) {
+        if (getIntent().getStringExtra("rangy") != null && folioPageFragment != null) {
             folioPageFragment.scrollToHighlightId(getIntent().getStringExtra("rangy"));
         }
 
