@@ -33,7 +33,7 @@ public class FolioReader {
     private Config config;
     private boolean overrideConfig;
     private OnHighlightListener onHighlightListener;
-    private ReadPositionListener readPositionListener;
+    static private ReadPositionListener readPositionListener;
     private OnClosedListener onClosedListener;
     private ReadPosition readPosition;
     public static final String ACTION_SAVE_READ_POSITION = "com.folioreader.action.SAVE_READ_POSITION";
@@ -261,7 +261,7 @@ public class FolioReader {
         if (singleton != null) {
             singleton.readPosition = null;
             singleton.onHighlightListener = null;
-            singleton.readPositionListener = null;
+            readPositionListener = null;
             singleton.onClosedListener = null;
         }
     }
@@ -274,6 +274,7 @@ public class FolioReader {
     public static synchronized void stop() {
 
         if (singleton != null) {
+            readPositionListener.saveReadPosition(singleton.readPosition);
             DbAdapter.terminate();
             singleton.unregisterListeners();
             singleton = null;
