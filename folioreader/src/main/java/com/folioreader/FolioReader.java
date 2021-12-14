@@ -272,6 +272,7 @@ public class FolioReader {
      * FolioReader singleton instance again in application, else use {@link #clear()}.
      */
     public static synchronized void stop() {
+
         if (singleton != null) {
             singleton.readPositionListener.saveReadPosition(singleton.readPosition);
             DbAdapter.terminate();
