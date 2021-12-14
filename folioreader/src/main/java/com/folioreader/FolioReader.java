@@ -274,7 +274,6 @@ public class FolioReader {
     public static synchronized void stop() {
 
         if (singleton != null) {
-            singleton.readPositionListener.saveReadPosition(singleton.readPosition);
             DbAdapter.terminate();
             singleton.unregisterListeners();
             singleton = null;
